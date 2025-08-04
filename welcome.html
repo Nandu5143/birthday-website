@@ -9,14 +9,12 @@
             text-align: center;
             padding-top: 100px;
             background-image: url('background.jpeg'); /* replace with your image URL or path */
-            background-size:cover;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            color: white;
-            text-align: center;
+            color: cornflowerblue;
         }
         button {
             font-size: 20px;
@@ -32,13 +30,8 @@
             margin: 20px;
             color: #333;
         }
-        #form-link {
-            font-size: 18px;
+        #form-container {
             margin-top: 20px;
-            display: none;
-            text-decoration: none;
-            color: #1565c0;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -46,11 +39,13 @@
     <h1>🎉 Welcome to Your Birthday Surprise! 🎂</h1>
     <p id="message">Click the button to continue...</p>
     <button onclick="checkBirthday()">Start</button>
-    <a id="form-link" href="https://docs.google.com/forms/d/1lJVDD1Dh46Dch-H7OzgBrlMaIOXiTeIjXQU4Bkbnc4A/edit" target="_blank">📋 Fill out the secret form</a>
+
+    <!-- ✅ Only this will be used for the link -->
+    <div id="form-container"></div>
 
     <script>
         function checkBirthday() {
-            const birthdayStr = "2025-08-05T00:00:00"; // 🎂 Set your birthday
+            const birthdayStr = "2025-08-04T00:00:00"; // 🎂 Set your birthday
             const birthday = new Date(birthdayStr);
             const today = new Date();
 
@@ -63,12 +58,11 @@
             }
 
             startCountdown(birthday);
+            showGoogleForm();
         }
 
         function startCountdown(targetDate) {
             const message = document.getElementById("message");
-            const formLink = document.getElementById("form-link");
-            formLink.style.display = "block";
 
             const interval = setInterval(() => {
                 const now = new Date().getTime();
@@ -89,14 +83,13 @@
             }, 1000);
         }
 
-function showGoogleForm() {
-    const formContainer = document.getElementById("form-container");
-    formContainer.innerHTML = `
-        <p>🎁 While you're here, fill this secret form:</p>
-        <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" style="font-weight: bold; color: #007bff;">👉 Click here to fill the birthday form</a>
-    `;
-}
-
+        function showGoogleForm() {
+            const formContainer = document.getElementById("form-container");
+            formContainer.innerHTML = `
+                <p>🎁 While you're here, fill this secret form:</p>
+                <a href="https://forms.gle/YOUR_FORM_LINK" target="_blank" style="font-weight: bold; color: #007bff;">👉 Click here to fill the birthday form</a>
+            `;
+        }
     </script>
 </body>
 </html>
